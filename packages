@@ -1,0 +1,52 @@
+## Base
+
+vim
+tree
+sshfs
+git
+curl
+colordiff
+software-properties-common
+ppa-purge
+
+htop
+jnettop
+iotop
+
+nmap
+httpie
+whois
+
+fortunes
+cowsay
+
+openvpn
+
+## Host
+
+vlc
+fonts-hack-otf
+tlp
+network-manager-openvpn
+
+## Non host
+
+ssh
+
+## Server
+
+iptstate
+
+## vm
+
+open-vm-tools-desktop
+#open-vm-tools-dkms
+
+## Dev
+
+python3-virtualenv
+
+## Interesting stuff
+
+backuppc
+bacula
