@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Some getopts magic that creates repo and packages list
+# Could read from JSON files...
+# Insert some getopts magic that creates repo and packages list
 
 REPOS=()
 PACKAGES=()
 # General
 REPOS+=(
-    "ppa:webupd8team/sublime-text-3"
+    #"ppa:webupd8team/sublime-text-3"
 )
 PACKAGES+=(
     "vim"
@@ -31,7 +32,7 @@ PACKAGES+=(
     "curl"
     "sshfs"
     "openvpn"
-    "lynx-cur"
+    #"lynx-cur"
     "git"
     "fonts-hack-otf"
     "scanmem"
@@ -39,12 +40,13 @@ PACKAGES+=(
     "libnotify-bin"
     "inotify-tools" # inotifywait
     "iptstate"
-    # May be needed for adding repos
+    # May be needed for adding and managing repos
     # "python-software-properties"
     # "software-properties-common"
+    # "ppa-purge"
     "gpart"
     "gparted"
-    "sublime-text-installer"
+    #"sublime-text-installer"
     "synaptic"
     "hexchat"
     # For fun
@@ -104,7 +106,7 @@ if [ $DEV = true ]; then
         "python3-requests"
         "python3-crypto"
         "python3-numpy"
-        "python3-mayplotlib"
+        "python3-matplotlib"
         "python3-tk"
         # "python3-nacl"
         # "python-keyczar"

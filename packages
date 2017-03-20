@@ -1,3 +1,5 @@
+# Packages
+
 ## Base
 
 vim
@@ -27,7 +29,18 @@ openvpn
 vlc
 fonts-hack-otf
 tlp
-network-manager-openvpn
+pm-utils
+cpufreqinfo
+network-manager-openvpn-gnome
+qbittorrent
+banshee
+keepassx
+lm-sensors
+
+### Chrome
+
+libappindicator1
+libindicator7
 
 ## Non host
 
@@ -36,6 +49,10 @@ ssh
 ## Server
 
 iptstate
+
+### Torrent
+
+qbittorrent
 
 ## vm
 
@@ -50,3 +67,10 @@ python3-virtualenv
 
 backuppc
 bacula
+byobu
+
+# Local (.deb)
+
+slack
+google chrome
+sublime
