@@ -1,5 +1,6 @@
 #!/bin/bash
-# Configure a fresh Linux installation
+# Configure a fresh Linux installation. Hit the ground running!
+# For the sake of simplicity, development will focus on Ubuntu Gnome.
 
 # Packages
 HOST=true
@@ -9,8 +10,8 @@ SERVER=false
 
 # Desktop environments
 # Options: unity, gnome, kde, xfce, cinamon
-DESKTOP_ENV='kde'
-# Use getopts
+DESKTOP_ENV='gnome'
+# DESKTOP_ENV="$1"
 
 # Libraries
 
