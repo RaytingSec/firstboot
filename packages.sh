@@ -34,8 +34,8 @@ packages_pip=()
 urls=()
 
 url_chrome="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-url_slack=$(curl -sS https://slack.com/downloads/instructions/linux | grep amd64 | cut -d \" -f 4)
-url_sublime=$(curl -sS https://www.sublimetext.com/ | grep download | grep amd64 | cut -d \" -f 4)
+url_slack=$(wget -O - -o /dev/null https://slack.com/downloads/instructions/linux | grep amd64 | cut -d \" -f 4)
+url_sublime=$(wget -O - -o /dev/null https://www.sublimetext.com/ | grep download | grep amd64 | cut -d \" -f 4)
 
 # packages_base=(
 packages+=(
