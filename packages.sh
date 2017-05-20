@@ -100,10 +100,10 @@ packages_not_host=(
     "ssh "
 )
 
-packages_vm=(
-    "open-vm-tools-desktop "
-    "open-vm-tools-dkms "
-)
+# packages_vm=(
+#     "open-vm-tools-desktop "
+#     "open-vm-tools-dkms "
+# )
 
 packages_server=(
     "iptstate "
@@ -159,7 +159,7 @@ packages_dev_url=(
     $url_sublime
 )
 packages_dev_pip=(
-    "pip "
+    # "pip "
     "virtualenv "
     "setuptools "
     "bs4 "
@@ -227,10 +227,11 @@ else
     packages+=$packages_not_host
 fi
 
-if $vm; then
-    echo "adding vm packages"
-    packages+=$packages_vm
-fi
+# Done in drivers.sh
+# if $vm; then
+#     echo "adding vm packages"
+#     packages+=$packages_vm
+# fi
 
 if $server; then
     echo "adding server packages"
@@ -268,7 +269,7 @@ done
 
 selected_urls=" "
 for u in "${urls[@]}"; do
-    selected_urls+="wget "$u
+    selected_urls+="wget $u; "
 done
 selected_urls+="; sudo dpkg -i ./*.deb"
 
@@ -282,8 +283,8 @@ elif $print; then
     echo "printing out installation commands..."
     echo $selected_repos
     echo $selected_packages
-    # echo $selected_pip
-    # echo $selected_urls
+    echo $selected_pip
+    echo $selected_urls
 elif $update; then
     echo "updating existing packages..."
     echo "sudo apt update && sudo apt upgrade"

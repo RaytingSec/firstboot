@@ -2,49 +2,57 @@
 # Configure a fresh Linux installation. Hit the ground running!
 # For the sake of simplicity, development will focus on Ubuntu Gnome.
 
-# Packages
-HOST=true
-VM=true
-DEV=true
-SERVER=false
+OPTS=`getopt -o chvs --long config,host,vm,server -n 'init.sh' -- "$@"`
+if [ $? != 0 ] ; then echo "argument parsing failed" >&2 ; exit 1 ; fi
+eval set -- "$OPTS"
 
-# Desktop environments
-# Options: unity, gnome, kde, xfce, cinamon
-DESKTOP_ENV='gnome'
-# DESKTOP_ENV="$1"
+params=""
+config=false
+host=false
+vm=false
+server=false
+while true; do
+    case "$1" in
+        # -c | --config ) config=true; shift;;
+        -h | --host )   host=true; params+="--host "; shift;;
+        -v | --vm )     vm=true; params+="--vm "; shift;;
+        -s | --server ) server=true; params+="--server "; shift;;
+        # -- ) shift; break ;;
+        * ) break ;;
+    esac
+done
 
-# Libraries
+# if $config; then
+#     # Set up for init script
+#     exit 0
+# fi
 
-# Find data dir
-DATA=/home/$USER/Data
-if [ -d "/data" ]; then
-    ln -s /data ~/Data
-    echo "Using /data"
-elif [ -d $DATA ]; then
-    echo "Using ~/data"
+data=~/Data
+if [[ -d $data ]]; then
+    echo "Using ~/Data"
+elif [[ -d "/data/" ]]; then
+    echo "Using /data/"
+    ln -s /data/ ~/Data
 else
-    echo "No data directory found, exiting"
+    echo "Warning, no data directory found"
     exit 1
 fi
 
-# Drivers if necessary
-bash ./drivers.sh
+if $host || $vm; then
+    echo "Installing drivers"
+    bash ./drivers.sh $params --dir $data
+fi
 
-# Link to common dirs
-bash ./directories.sh
-
-# Configure things
-bash ./configure.sh
+if $host; then
+    bash ./directories.sh --libs --symlinks --torrents --dir $data
+fi
 
 # Install packages
-bash ./packages.sh --setup --desktop-env $DESKTOP_ENV
-bash ./packages.sh --install
+bash ./packages.sh --update
+bash ./packages.sh --print --host
+# bash ./keepass.sh
 
-
-
-# If this turns into a makefile...
-# make drivers
-# make dirs
-# make configs
-# make packages
-# make install
+# # Configure things
+# scp $configfiles
+# scp $wallpapers
+# bash ./configure.sh
