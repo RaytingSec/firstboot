@@ -1,202 +1,286 @@
-#!/bin/bash
+# Packages
 
-# Could read from JSON files...
-# Insert some getopts magic that creates repo and packages list
+extra_packages=false
+testing_packages=false
 
-REPOS=()
-PACKAGES=()
-# General
-REPOS+=(
-    #"ppa:webupd8team/sublime-text-3"
-)
-PACKAGES+=(
+OPTS=`getopt -o hvseipu --long host,vm,server,extra,install,print,update -n 'packages.sh' -- "$@"`
+if [ $? != 0 ] ; then echo "argument parsing failed" >&2 ; exit 1 ; fi
+eval set -- "$OPTS"
+
+host=false
+vm=false
+server=false
+extra=false
+install=false
+print=false
+update=false
+while true; do
+    case "$1" in
+        -h | --host )    host=true; shift;;
+        -v | --vm )      vm=true; shift;;
+        -s | --server )  server=true; shift;;
+        -e | --extra )   extra=true; shift;;
+        -i | --install ) install=true; shift;;
+        -p | --print )   print=true; shift;;
+        -u | --update )  update=true; shift;;
+        # -- ) shift; break ;;
+        * ) break ;;
+    esac
+done
+
+# Logic flow
+# base
+# host?
+#     yes
+#     no
+# vm?
+#     yes
+# server?
+#     yes (server)
+#     no (dev, uses display)
+
+# Packages
+
+url_chrome="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+url_slack=$(curl -sS https://slack.com/downloads/instructions/linux | grep amd64 | cut -d \" -f 4)
+url_sublime=$(curl -sS https://www.sublimetext.com/ | grep download | grep amd64 | cut -d \" -f 4)
+
+packages_base=(
+    # Essentials
     "vim"
-    "fortune"
-    "cowsay"
-    "fortunes"
-    # "fortunes-debian-hints"
-    # "fortunes-off"
-    # "fortunes-spam"
-    # "fortunes-ubuntu-server"
-    # "lolcat"
     "tmux"
-    "htop"
-    # "atop"
     "tree"
-    "finger"
-    "whois"
-    "traceroute"
-    "nmap"
-    # General network utilities    
-    "hping3"
-    "curl"
+    "git"
+    "colordiff"
+    "software-properties-common"
+    "ppa-purge"
+    # Sys monitor
+    "htop"
+    "jnettop"
+    "iotop"
+    # Cowsay stuff
+    "fortunes"
+    "cowsay"
+    # Network stuff
     "sshfs"
     "openvpn"
-    #"lynx-cur"
-    "git"
-    "fonts-hack-otf"
-    "scanmem"
-    # Administration things
-    "libnotify-bin"
-    "inotify-tools" # inotifywait
-    "iptstate"
-    # May be needed for adding and managing repos
-    # "python-software-properties"
-    # "software-properties-common"
-    # "ppa-purge"
-    "gpart"
-    "gparted"
-    #"sublime-text-installer"
-    "synaptic"
-    "hexchat"
+    "nmap"
+    "curl"
+)
+packages_base_extra=(
+    "whois"
+    "atop"
+    "finger"
+    "hping3"
+    # Fortunes
+    "fortunes-debian-hints"
+    "fortunes-spam"
+    "fortunes-ubuntu-server"
     # For fun
     "bsdgames"
     "bsdgames-nonfree"
 )
 
-# Host machine
-if [ $HOST = true ]; then
-    REPOS+=(
-        "ppa:jtaylor/keepass"
-        "ppa:maarten-baert/simplescreenrecorder"
-    )
-    PACKAGES+=(
-        "cpufrequtils"
-        "youtube-dl"
-        "libav-tools"
-        "vlc"
-        "keepassx"
-        # "xdotool"
-        "steam"
-        "simplescreenrecorder"
-        "nautilus-dropbox"
-        "audacity"
-        # chrome
-        "libappindicator1"
-        "libindicator7"
-    )
-# VM
-elif [ $VM = true ]; then
-    PACKAGES+=(
-        "ssh"
-        "open-vm-tools-desktop"
-        "open-vm-tools-dkms"
-    )
-fi
+packages_host=(
+    "cpufreqinfo"
+    "tlp"
+    "pm-utils"
+    "lm-sensors"
+    "nautilus-dropbox"
+    "network-manager-openvpn-gnome"
+    "youtube-dl"
+)
+packages_host_urls=(
+    $url_slack
+)
+packages_host_extra=(
+    "banshee"
+)
+packages_not_host=(
+    "ssh"
+)
 
-# Development/Security
-if [ $DEV = true ]; then
-    REPOS+=(
-        "ppa:webupd8team/java"
-        "ppa:webupd8team/brackets"
-        "ppa:gns3/ppa"
-    )
-    PACKAGES+=(
-        # JDK
-        "oracle-java8-installer"
-        "oracle-java8-set-default"
-        # Plugins and stuff
-        "icedtea-plugin"
-        "icedtea-8-plugin"
-        # "flashplugin-installer"
-        # Python
-        "python3-pip"
-        "python3-bs4"
-        "python3-markdown"
-        "python3-requests"
-        "python3-crypto"
-        "python3-numpy"
-        "python3-matplotlib"
-        "python3-tk"
-        # "python3-nacl"
-        # "python-keyczar"
-        "nodejs"
-        "npm"
-        "node-typescript"
-        "brackets"
-        "httpie"
-        "sqlitebrowser"
-        "gns3-gui"
-        "gns3-iou"
-        # Security
-        "sox"
-        "libsox-fmt-mp3"
-        "nikto"
-        "hydra"
-        "sqlmap"
-        "masscan"
-        "zmap"
-        "wireshark"
-        "radare2"
-    )
-fi
+packages_vm=(
+    "open-vm-tools-desktop"
+    "open-vm-tools-dkms"
+)
 
-# Server
-if [ $SERVER = true ]; then
-    REPO+=(
-        "ppa:transmissionbt/ppa"
-    )
-    PACKAGES+=(
-        "ssh"
-        "mysql-server"
-        "mysql-workbench"
-        # Transmission stuff if building a seed box
-        "transmission-cli"
-        "transmission-daemon"
-        "transmission-common"
-    )
-fi
+packages_server=(
+    "iptstate"
+    # "nginx"
+)
+packages_server_sql=(
+    "mysql-server"
+)
+packages_server_torrent
+    "transmission-cli"
+    "transmission-daemon"
+    "transmission-common"
+packages_server_torrent_ppa=(
+    "ppa:transmissionbt/ppa"
+)
 
-if [[ "$DE" == "unity" ]]; then
-    PACKAGES+=(
-        "unity-tweak-tool"
-        "gnome-color-chooser"
-    )
-elif [[ "$DE" == "gnome" ]]; then
-    echo "Nothing to do for gnome yet..."
-elif [[ "$DE" == "kde" ]]; then
-    REPOS+=(
-        "ppa:kubuntu-ppa/backports"
-    )
-    PACKAGES+=(
-        "kubuntu-desktop"
-    )
-elif [[ "$DE" == "xfce" ]]; then
-    PACKAGES+=(
-        "thunar-dropbox-plugin"
-    )
-elif [[ "$DE" == "cinnamon" ]]; then
-    REPOS+=(
-        "ppa:tsvetko.tsvetkov/cinnamon"
-    )
-    PACKAGES+=(
-        "cinnamon"
-        "cinnamon-themes"
-        "mint-backgrounds*"
-        "nemo-dropbox"
-        "mint-x-icons"
-        "mint-themes"
-        "cinnamon-session"
-    )
+packages_gui=(
+    "fonts-hack-otf"
+    "simplescreenrecorder"
+    "vlc"
+    # Chrome dependencies
+    "libappindicator1"
+    "libindicator7"
+)
+packages_gui_url=(
+    $url_chrome
+)
+
+packages_dev=(
+    # Dev tools
+    "httpie"
+    "oracle-java8-installer"
+    "oracle-java8-set-default"
+    "python3-pip"
+    # Security
+    "sox"
+    "libsox-fmt-mp3"
+    "radare2"
+    "scanmem"
+    "hexedit"
+    "nikto"
+    "hydra"
+    "sqlmap"
+    "wireshark"
+    "masscan"
+    "zmap"
+)
+packages_dev_ppa=(
+    "ppa:webupd8team/java"
+)
+packages_dev_url=(
+    $url_sublime
+)
+packages_dev_pip=(
+    "pip"
+    "virtualenv"
+    "setuptools"
+    "bs4"
+    "markdown"
+    "requests"
+    "crypto"
+    "numpy"
+    "matplotlib"
+    "requests[security]"
+    # keyczar
+    # nacl
+)
+packages_dev_extra=(
+    #plugins
+    "icedtea-plugin"
+    "icedtea-8-plugin"
+    "flashplugin-installer"
+    #other
+    "nodejs"
+    "npm"
+    "node-typescript"
+    "brackets"
+    "sqlitebrowser"
+    "gns3-gui"
+    "gns3-iou"
+)
+packages_dev_extra_ppa=(
+    "ppa:webupd8team/brackets"
+    "ppa:gns3/ppa"
+)
+
+# Testing stuff
+packages_testing=(
+    "backuppc"
+    "bacula"
+    "byobu"
+)
+
+# Logic flow
+# base
+# host?
+#     yes
+#     no
+# vm?
+#     yes
+# server?
+#     yes (server)
+#     no (dev, uses display)
+
+repos=()
+packages=()
+packages_pip=()
+urls=()
+
+packages+=packages_base
+packages+=packages_base_extra
+
+echo "configuring for install..."
+if $host; then
+    echo "adding host packages"
+    packages+=packages_host
+    packages+=packages_host_urls
+    # packages+=packages_host_extra
 else
-    echo "Unknown desktop environment $DE"
+    packages+=packages_not_host
 fi
 
-for R in "${REPOS[@]}"; do
-    echo "sudo add-apt-repository -y "$R
+if $vm; then
+    echo "adding vm packages"
+    packages+=packages_vm
+fi
+
+if $server; then
+    echo "adding server packages"
+    packages+=packages_server
+    # packages+=packages_server_sql
+    # packages+=packages_server_torrent_ppa
+else
+    packages+=packages_gui
+    packages+=packages_gui_url
+    packages+=packages_dev
+    packages+=packages_dev_ppa
+    packages+=packages_dev_url
+    packages_pip+=packages_dev_pip
+    # packages+=packages_dev_extra
+    # packages+=packages_dev_extra_ppa
+fi
+
+selected_repos=""
+for r in "${repos[@]}"; do
+    selected_repos+="sudo add-apt-repository -y "$r"; "
 done
 
-SELECTED=""
-for P in "${PACKAGES[@]}"; do
-    SELECTED+=$P" "
+selected_packages="sudo apt install "
+for p in "${packages[@]}"; do
+    selected_packages+=$p" "
 done
-echo "sudo apt install "$SELECTED
 
+selected_pip="sudo -H pip3 install --upgrade pip; "
+selected_pip+="sudo pip3 -H install "
+for p in "${packages_pip[@]}"; do
+    selected_pip+=$p" "
+done
 
-# Don't forget python packages
+selected_urls=""
+for u in "${urls[@]}"; do
+    selected_urls+="wget "$u
+done
+selected_urls+="; sudo dpkg -i ./*.deb"
 
-# Python development
-sudo -H pip3 install --upgrade pip
-sudo -H pip3 install setuptools bs4 markdown requests crypto numpy matplotlib
-# keyczar nacl
-# requests[security]
+if $install; then
+    echo "installing..."
+    eval selected_repos
+    eval selected_packages
+    eval selected_pip
+    eval selected_urls
+elif $print; then
+    echo "printing out installation commands..."
+    printf selected_repos
+    printf selected_packages
+    printf selected_pip
+    printf selected_urls
+elif $update; then
+    echo "updating existing packages..."
+fi
