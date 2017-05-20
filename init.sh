@@ -48,8 +48,8 @@ if $host; then
 fi
 
 # Install packages
-bash ./packages.sh --update
-bash ./packages.sh --print --host
+# bash ./packages.sh --update
+# bash ./packages.sh --print --host
 # bash ./keepass.sh
 
 # # Configure things
