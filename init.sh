@@ -55,4 +55,4 @@ fi
 # # Configure things
 # scp $configfiles
 # scp $wallpapers
-# bash ./configure.sh
+bash ./configure.sh

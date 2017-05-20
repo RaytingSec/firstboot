@@ -1,25 +1,38 @@
 #!/bin/bash
 
-# Configs
-CONFIGS=~/code/linux-config
+OPTS=`getopt -o d: --long dir: -n 'configure.sh' -- "$@"`
+if [ $? != 0 ] ; then echo "argument parsing failed" >&2 ; exit 1 ; fi
+eval set -- "$OPTS"
 
-# dotfiles (bash, git, vim, etc.)
-cp $CONFIGS/.* ~/
+dir=""
+while true; do
+    case "$1" in
+        -d | --dir )  dir=$2; shift;;
+        # -- ) shift; break ;;
+        * ) break ;;
+    esac
+done
 
-# vim
+if [[ $dir == "" ]]; then
+    echo "No config directory specified! Exiting..."
+    exit 1
+fi
+
+# Config files
+cp $dir/.* ~/
+
 mkdir -p ~/.vim/colors
-mv $CONFIGS/molokai.vim ~/.vim/colors
+mv $dir/molokai.vim ~/.vim/colors
 
-# cowsay
-sudo cp $CONFIGS/rayting.cow /usr/share/cowsay/cows/
-
-# inputrc
 cat inputrc | sudo -E tee /etc/inputrc > /dev/null
 
-# sublime
-CONFIGS=~/code/sublime-config
+sudo cp $dir/rayting.cow /usr/share/cowsay/cows/
+
 wget --directory-prefix="~/.config/sublime-text-3/Installed Packages" https://packagecontrol.io/Package%20Control.sublime-package
-cp $CONFIGS/* ~/.config/sublime-text-3/Packages/User/
+cp $dir/sublime-config/* ~/.config/sublime-text-3/Packages/User/
+
+mkdir ~/Pictures/Wallpapers/
+cp -t ~/Pictures/Wallpapers/ $dir/background.png $dir/lockscreen.jpg
 
 # Shell
 gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 9'
