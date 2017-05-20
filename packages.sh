@@ -1,4 +1,4 @@
-# Packages
+#!/bin/bash
 
 extra_packages=false
 testing_packages=false
@@ -47,86 +47,87 @@ url_sublime=$(curl -sS https://www.sublimetext.com/ | grep download | grep amd64
 
 packages_base=(
     # Essentials
-    "vim"
-    "tmux"
-    "tree"
-    "git"
-    "colordiff"
-    "software-properties-common"
-    "ppa-purge"
+    "vim "
+    "tmux "
+    "tree "
+    "git "
+    "colordiff "
+    "software-properties-common "
+    "ppa-purge "
     # Sys monitor
-    "htop"
-    "jnettop"
-    "iotop"
+    "htop "
+    "jnettop "
+    "iotop "
     # Cowsay stuff
-    "fortunes"
-    "cowsay"
+    "fortunes "
+    "cowsay "
     # Network stuff
-    "sshfs"
-    "openvpn"
-    "nmap"
-    "curl"
+    "sshfs "
+    "openvpn "
+    "nmap "
+    "curl "
 )
 packages_base_extra=(
-    "whois"
-    "atop"
-    "finger"
-    "hping3"
+    "whois "
+    "atop "
+    "finger "
+    "hping3 "
     # Fortunes
-    "fortunes-debian-hints"
-    "fortunes-spam"
-    "fortunes-ubuntu-server"
+    "fortunes-debian-hints "
+    "fortunes-spam "
+    "fortunes-ubuntu-server "
     # For fun
-    "bsdgames"
-    "bsdgames-nonfree"
+    "bsdgames "
+    "bsdgames-nonfree "
 )
 
 packages_host=(
-    "cpufreqinfo"
-    "tlp"
-    "pm-utils"
-    "lm-sensors"
-    "nautilus-dropbox"
-    "network-manager-openvpn-gnome"
-    "youtube-dl"
+    "cpufreqinfo "
+    "tlp "
+    "pm-utils "
+    "lm-sensors "
+    "nautilus-dropbox "
+    "network-manager-openvpn-gnome "
+    "youtube-dl "
 )
 packages_host_urls=(
     $url_slack
 )
 packages_host_extra=(
-    "banshee"
+    "banshee "
 )
 packages_not_host=(
-    "ssh"
+    "ssh "
 )
 
 packages_vm=(
-    "open-vm-tools-desktop"
-    "open-vm-tools-dkms"
+    "open-vm-tools-desktop "
+    "open-vm-tools-dkms "
 )
 
 packages_server=(
-    "iptstate"
-    # "nginx"
+    "iptstate "
+    # "nginx "
 )
 packages_server_sql=(
-    "mysql-server"
+    "mysql-server "
 )
-packages_server_torrent
-    "transmission-cli"
-    "transmission-daemon"
-    "transmission-common"
+packages_server_torrent=(
+    "transmission-cli "
+    "transmission-daemon "
+    "transmission-common "
+)
 packages_server_torrent_ppa=(
     "ppa:transmissionbt/ppa"
 )
 
 packages_gui=(
-    "fonts-hack-otf"
-    "simplescreenrecorder"
-    "vlc"
+    "fonts-hack-otf "
+    "simplescreenrecorder "
+    "vlc "
     # Chrome dependencies
-    "libappindicator1"
-    "libindicator7"
+    "libappindicator1 "
+    "libindicator7 "
 )
 packages_gui_url=(
     $url_chrome
@@ -134,22 +135,22 @@ packages_gui_url=(
 
 packages_dev=(
     # Dev tools
-    "httpie"
-    "oracle-java8-installer"
-    "oracle-java8-set-default"
-    "python3-pip"
+    "httpie "
+    "oracle-java8-installer "
+    "oracle-java8-set-default "
+    "python3-pip "
     # Security
-    "sox"
-    "libsox-fmt-mp3"
-    "radare2"
-    "scanmem"
-    "hexedit"
-    "nikto"
-    "hydra"
-    "sqlmap"
-    "wireshark"
-    "masscan"
-    "zmap"
+    "sox "
+    "libsox-fmt-mp3 "
+    "radare2 "
+    "scanmem "
+    "hexedit "
+    "nikto "
+    "hydra "
+    "sqlmap "
+    "wireshark "
+    "masscan "
+    "zmap "
 )
 packages_dev_ppa=(
     "ppa:webupd8team/java"
@@ -158,32 +159,32 @@ packages_dev_url=(
     $url_sublime
 )
 packages_dev_pip=(
-    "pip"
-    "virtualenv"
-    "setuptools"
-    "bs4"
-    "markdown"
-    "requests"
-    "crypto"
-    "numpy"
-    "matplotlib"
+    "pip "
+    "virtualenv "
+    "setuptools "
+    "bs4 "
+    "markdown "
+    "requests "
+    "crypto "
+    "numpy "
+    "matplotlib "
     "requests[security]"
     # keyczar
     # nacl
 )
 packages_dev_extra=(
     #plugins
-    "icedtea-plugin"
-    "icedtea-8-plugin"
-    "flashplugin-installer"
+    "icedtea-plugin "
+    "icedtea-8-plugin "
+    "flashplugin-installer "
     #other
-    "nodejs"
-    "npm"
-    "node-typescript"
-    "brackets"
-    "sqlitebrowser"
-    "gns3-gui"
-    "gns3-iou"
+    "nodejs "
+    "npm "
+    "node-typescript "
+    "brackets "
+    "sqlitebrowser "
+    "gns3-gui "
+    "gns3-iou "
 )
 packages_dev_extra_ppa=(
     "ppa:webupd8team/brackets"
@@ -192,9 +193,9 @@ packages_dev_extra_ppa=(
 
 # Testing stuff
 packages_testing=(
-    "backuppc"
-    "bacula"
-    "byobu"
+    "backuppc "
+    "bacula "
+    "byobu "
 )
 
 # Logic flow
@@ -213,49 +214,51 @@ packages=()
 packages_pip=()
 urls=()
 
-packages+=packages_base
-packages+=packages_base_extra
+packages+=$packages_base
+packages+=$packages_base_extra
 
 echo "configuring for install..."
 if $host; then
     echo "adding host packages"
-    packages+=packages_host
-    packages+=packages_host_urls
-    # packages+=packages_host_extra
+    packages+=$packages_host
+    packages+=$packages_host_urls
+    # packages+=$packages_host_extra
 else
-    packages+=packages_not_host
+    packages+=$packages_not_host
 fi
 
 if $vm; then
     echo "adding vm packages"
-    packages+=packages_vm
+    packages+=$packages_vm
 fi
 
 if $server; then
     echo "adding server packages"
-    packages+=packages_server
-    # packages+=packages_server_sql
-    # packages+=packages_server_torrent_ppa
+    packages+=$packages_server
+    # packages+=$packages_server_sql
+    # packages+=$packages_server_torrent_ppa
 else
-    packages+=packages_gui
-    packages+=packages_gui_url
-    packages+=packages_dev
-    packages+=packages_dev_ppa
-    packages+=packages_dev_url
-    packages_pip+=packages_dev_pip
-    # packages+=packages_dev_extra
-    # packages+=packages_dev_extra_ppa
+    packages+=$packages_gui
+    urls+=$packages_gui_url
+
+    packages+=$packages_dev
+    repos+=$packages_dev_ppa
+    urls+=$packages_dev_url
+    packages_pip+=$packages_dev_pip
+    # packages+=$packages_dev_extra
+    # packages+=$packages_dev_extra_ppa
 fi
 
-selected_repos=""
+selected_repos=" "
 for r in "${repos[@]}"; do
-    selected_repos+="sudo add-apt-repository -y "$r"; "
+    selected_repos+="sudo add-apt-repository -y $r; "
 done
 
-selected_packages="sudo apt install "
+selected_packages=" "
 for p in "${packages[@]}"; do
     selected_packages+=$p" "
 done
+selected_packages="sudo apt install "$selected_packages
 
 selected_pip="sudo -H pip3 install --upgrade pip; "
 selected_pip+="sudo pip3 -H install "
@@ -263,7 +266,7 @@ for p in "${packages_pip[@]}"; do
     selected_pip+=$p" "
 done
 
-selected_urls=""
+selected_urls=" "
 for u in "${urls[@]}"; do
     selected_urls+="wget "$u
 done
@@ -271,16 +274,17 @@ selected_urls+="; sudo dpkg -i ./*.deb"
 
 if $install; then
     echo "installing..."
-    eval selected_repos
-    eval selected_packages
-    eval selected_pip
-    eval selected_urls
+    # eval $selected_repos
+    # eval $selected_packages
+    # eval $selected_pip
+    # eval $selected_urls
 elif $print; then
     echo "printing out installation commands..."
-    printf selected_repos
-    printf selected_packages
-    printf selected_pip
-    printf selected_urls
+    echo $selected_repos
+    echo $selected_packages
+    # echo $selected_pip
+    # echo $selected_urls
 elif $update; then
     echo "updating existing packages..."
+    echo "sudo apt update && sudo apt upgrade"
 fi
