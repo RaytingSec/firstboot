@@ -37,14 +37,16 @@ else
     echo "Warning, no data directory found"
     exit 1
 fi
+params+="--dir $data"
 
 if $host || $vm; then
     echo "Installing drivers"
-    bash ./drivers.sh $params --dir $data
+    bash ./drivers.sh $params
 fi
 
 if $host; then
-    bash ./directories.sh --libs --symlinks --torrents --dir $data
+    echo "Creating directories"
+    bash ./directories.sh --libraries --symlinks --torrents --dir $data
 fi
 
 # Install packages
@@ -55,4 +57,4 @@ fi
 # # Configure things
 # scp $configfiles
 # scp $wallpapers
-bash ./configure.sh
+bash ./configure.sh $params

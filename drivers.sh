@@ -26,10 +26,9 @@ if $host; then
     # printf "deb http://ftp.us.debian.org/debian sid main non-free\n" >> /etc/apt/sources.list
     # sudo apt update
     # sudo apt install firmware-iwlwifi
-    # sudo dpkg -i $dir/firmware-iwlwifi.deb
-    echo $dir/firmware-iwlwifi.deb
+    sudo dpkg -i $dir/firmware-iwlwifi_0.43_all.deb
 elif $vm; then
     echo "Installing open vm drivers"
-    echo "sudo apt update"
-    echo "sudo apt install open-vm-tools-desktop open-vm-tools-dkms"
+    sudo apt update
+    sudo apt install -y open-vm-tools-desktop open-vm-tools-dkms
 fi

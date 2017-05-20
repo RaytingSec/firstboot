@@ -34,13 +34,17 @@ if $libraries; then
         Videos
     )
     for lib in "${user_libs[@]}"; do
-        rm -r $HOME/$lib
-        ln -s $dir/$lib $HOME/$lib
+        # Use existing dir, or move current one to $dir
+        if [[ -d $dir/$lib ]]; then
+            rm -r ~/$lib
+        else
+            mv ~/$lib $dir
+        fi
+        ln -s $dir/$lib ~/$lib
     done
 fi
 
 if $torrents; then
-    do stuff
     mkdir -p $dir/torrent/down
     mkdir -p $dir/torrent/fin
     mkdir -p $dir/torrent/srcdown

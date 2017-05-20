@@ -1,13 +1,16 @@
 #!/bin/bash
 
-OPTS=`getopt -o d: --long dir: -n 'configure.sh' -- "$@"`
+OPTS=`getopt -o hvsd: --long host,vm,server,dir: -n 'configure.sh' -- "$@"`
 if [ $? != 0 ] ; then echo "argument parsing failed" >&2 ; exit 1 ; fi
 eval set -- "$OPTS"
 
 dir=""
 while true; do
     case "$1" in
-        -d | --dir )  dir=$2; shift;;
+        -h | --host )   host=true; shift;;
+        -v | --vm )     vm=true; shift;;
+        -s | --server ) server=true; shift;;
+        -d | --dir )    dir=$2; shift;;
         # -- ) shift; break ;;
         * ) break ;;
     esac
@@ -19,20 +22,26 @@ if [[ $dir == "" ]]; then
 fi
 
 # Config files
-cp $dir/.* ~/
+mv $dir/linux-config/.bash* ~/
+mv $dir/linux-config/.gitconfig ~/
+mv $dir/linux-config/.tmux.conf ~/
 
+mv $dir/linux-config/.vimrc ~/
 mkdir -p ~/.vim/colors
 mv $dir/molokai.vim ~/.vim/colors
 
-cat inputrc | sudo -E tee /etc/inputrc > /dev/null
+cat $dir/linux-config/inputrc | sudo -E tee /etc/inputrc > /dev/null
 
-sudo cp $dir/rayting.cow /usr/share/cowsay/cows/
+sudo cp $dir/foxsay/rayting.cow /usr/share/cowsay/cows/
 
+# if $dev
 wget --directory-prefix="~/.config/sublime-text-3/Installed Packages" https://packagecontrol.io/Package%20Control.sublime-package
-cp $dir/sublime-config/* ~/.config/sublime-text-3/Packages/User/
+mv $dir/sublime-config/*.sublime* ~/.config/sublime-text-3/Packages/User/
 
+# if $display; then
 mkdir ~/Pictures/Wallpapers/
-cp -t ~/Pictures/Wallpapers/ $dir/background.png $dir/lockscreen.jpg
+mv $dir/wallpaper/stars.jpg ~/Pictures/Wallpapers/lockscreen.jpg
+mv $dir/wallpaper/cliffside.png ~/Pictures/Wallpapers/background.png
 
 # Shell
 gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 9'
@@ -63,7 +72,7 @@ default_uuid="b1dcc9dd-5262-4d8d-a863-c897e6d979b9"
 # gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ $KEY
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ default-size-columns 120
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ default-size-rows 40
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ foreground-color 'rgb(255,255,255)'x
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ foreground-color 'rgb(255,255,255)'
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ background-color 'rgb(0,0,0)'
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ use-theme-colors false
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ use-theme-transparency false
