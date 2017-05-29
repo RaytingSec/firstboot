@@ -37,11 +37,11 @@ else
     echo "Warning, no data directory found"
     exit 1
 fi
-params+="--dir $data"
+# params+="--dir $data"
 
 if $host || $vm; then
     echo "Installing drivers"
-    bash ./drivers.sh $params
+    bash ./drivers.sh $params --dir $data
 fi
 
 if $host; then
@@ -50,11 +50,11 @@ if $host; then
 fi
 
 # Install packages
-# bash ./packages.sh --update
-# bash ./packages.sh --print --host
+bash ./packages.sh --update
+bash ./packages.sh --print $params
 # bash ./keepass.sh
 
 # # Configure things
 # scp $configfiles
 # scp $wallpapers
-bash ./configure.sh $params
+bash ./configure.sh --dir $data

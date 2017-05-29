@@ -52,7 +52,8 @@ packages+=(
     "jnettop"
     "iotop"
     # Cowsay stuff
-    "fortunes"
+    "fortune"
+    # "fortunes"
     "cowsay"
     # Network stuff
     "sshfs"
@@ -77,7 +78,7 @@ packages+=(
 
 if $host; then
     packages+=(
-        "cpufreqinfo"
+        "cpufrequtils"
         "tlp"
         "pm-utils "
         "lm-sensors "
@@ -107,6 +108,11 @@ else
         # Chrome dependencies
         "libappindicator1"
         "libindicator7"
+        # Theme
+        # sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > sudo tee /etc/apt/sources.list.d/arc-theme.list"
+        # wget -nv http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key -O Release.key
+        # sudo apt-key add - < Release.key
+        "arc-theme"
     )
     urls+=(
         $url_chrome
@@ -148,25 +154,6 @@ urls+=(
     $url_sublime
 )
 
-# Logic flow
-# base
-# host?
-#     yes
-#     no
-# vm?
-#     yes
-# server?
-#     yes (server)
-#     no (dev, uses display)
-
-# repos=()
-# packages=()
-# packages_pip=()
-# urls=()
-
-# packages+=$packages_base
-# packages+=$packages_base_extra
-
 selected_repos=""
 for r in "${repos[@]}"; do
     selected_repos+="sudo add-apt-repository -y $r; "
@@ -176,7 +163,7 @@ selected_packages=""
 for p in "${packages[@]}"; do
     selected_packages+=$p" "
 done
-selected_packages="sudo apt install "$selected_packages
+selected_packages="sudo apt install -y "$selected_packages
 
 selected_pip="sudo -H pip3 install --upgrade pip; "
 selected_pip+="sudo pip3 -H install "
@@ -188,14 +175,14 @@ selected_urls=""
 for u in "${urls[@]}"; do
     selected_urls+="wget $u; "
 done
-selected_urls+="; sudo dpkg -i ./*.deb"
+selected_urls+="sudo dpkg -i ./*.deb"
 
 if $install; then
     echo "installing..."
-    # eval $selected_repos
-    # eval $selected_packages
-    # eval $selected_pip
-    # eval $selected_urls
+    eval $selected_repos
+    eval $selected_packages
+    eval $selected_pip
+    eval $selected_urls
 elif $print; then
     echo "printing out installation commands..."
     echo $selected_repos
@@ -204,6 +191,6 @@ elif $print; then
     echo $selected_urls
 elif $update; then
     echo "updating existing packages..."
-    echo "sudo apt update && sudo apt upgrade"
-    # sudo apt update && sudo apt upgrade -y
+    # echo "sudo apt update && sudo apt upgrade"
+    sudo apt update && sudo apt upgrade -y
 fi
