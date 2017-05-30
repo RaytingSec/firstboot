@@ -165,8 +165,8 @@ for p in "${packages[@]}"; do
 done
 selected_packages="sudo apt install -y "$selected_packages
 
-selected_pip="sudo -H pip3 install --upgrade pip; "
-selected_pip+="sudo pip3 -H install "
+selected_pip="sudo pip3 install --upgrade pip; "
+selected_pip+="sudo -H pip3 install "
 for p in "${packages_pip[@]}"; do
     selected_pip+=$p" "
 done
