@@ -41,20 +41,28 @@ fi
 
 if $host || $vm; then
     echo "Installing drivers"
+    sleep 2
     bash ./drivers.sh $params --dir $data
 fi
 
 if $host; then
     echo "Creating directories"
+    sleep 2
     bash ./directories.sh --libraries --symlinks --torrents --dir $data
 fi
 
 # Install packages
+echo "Updating packages"
+sleep 2
 bash ./packages.sh --update
-bash ./packages.sh --print $params
+echo "Installing packages"
+sleep 2
+bash ./packages.sh --install $params
 # bash ./keepass.sh
 
 # # Configure things
 # scp $configfiles
 # scp $wallpapers
+echo "Configuring"
+sleep 2
 bash ./configure.sh --dir $data

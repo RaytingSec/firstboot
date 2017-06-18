@@ -30,24 +30,24 @@ mv $dir/linux-config/.vimrc ~/
 mkdir -p ~/.vim/colors
 mv $dir/molokai.vim ~/.vim/colors
 
-cat $dir/linux-config/inputrc | sudo -E tee /etc/inputrc > /dev/null
+cat $dir/linux-config/inputrc | sudo -E tee -a /etc/inputrc > /dev/null
 
 sudo cp $dir/foxsay/rayting.cow /usr/share/cowsay/cows/
 
 # if $dev
-mkdir -p ~/.config/sublime-text-3/Packages/User/
+# mkdir -p ~/.config/sublime-text-3/Packages/User/
 # wget --directory-prefix="~/.config/sublime-text-3/Installed Packages" https://packagecontrol.io/Package%20Control.sublime-package
-wget https://packagecontrol.io/Package%20Control.sublime-package
-mv "Package Control.sublime-package" ~/.config/sublime-text-3/Packages/User/
-mv $dir/sublime-config/*.sublime* ~/.config/sublime-text-3/Packages/User/
+# wget https://packagecontrol.io/Package%20Control.sublime-package
+# mv "Package Control.sublime-package" ~/.config/sublime-text-3/Packages/User/
+# mv $dir/sublime-config/*.sublime* ~/.config/sublime-text-3/Packages/User/
 
 # if $display; then
 mkdir ~/Pictures/Wallpapers/
-mv $dir/wallpaper/stars.jpg ~/Pictures/Wallpapers/lockscreen.jpg
-mv $dir/wallpaper/cliffside.png ~/Pictures/Wallpapers/background.png
+# mv $dir/wallpaper/stars.jpg ~/Pictures/Wallpapers/lockscreen.jpg
+# mv $dir/wallpaper/cliffside.png ~/Pictures/Wallpapers/background.png
 
 # if $vm; then
-gsettings set org.gnome.desktop.interface enable-animations false
+# gsettings set org.gnome.desktop.interface enable-animations false
 
 # Shell
 gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 9'
@@ -57,7 +57,7 @@ gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.background picture-uri 'file://'$HOME'/Pictures/Wallpapers/background.png'
 gsettings set org.gnome.desktop.screensaver picture-uri 'file://'$HOME'/Pictures/Wallpapers/lockscreen.jpg'
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'firefox.desktop', 'sublime_text.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
-printf "[Settings]\ngtk-application-prefer-dark-theme=1\n"$ > ~/.config/gtk-3.0/settings.ini
+printf "[Settings]\ngtk-application-prefer-dark-theme=1\n" >> ~/.config/gtk-3.0/settings.ini
 
 # Windows manager
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'

@@ -26,7 +26,7 @@ if $host; then
     # printf "deb http://ftp.us.debian.org/debian sid main non-free\n" >> /etc/apt/sources.list
     # sudo apt update
     # sudo apt install firmware-iwlwifi
-    sudo dpkg -i $dir/firmware-iwlwifi_0.43_all.deb
+    echo "sudo dpkg -i $dir/firmware-iwlwifi_0.43_all.deb"
 elif $vm; then
     echo "Installing open vm drivers"
     sudo apt update

@@ -35,13 +35,14 @@ urls=()
 
 url_chrome="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 url_slack=$(wget -O - -o /dev/null https://slack.com/downloads/instructions/linux | grep amd64 | cut -d \" -f 4)
-url_sublime=$(wget -O - -o /dev/null https://www.sublimetext.com/ | grep download | grep amd64 | cut -d \" -f 4)
+# url_sublime=$(wget -O - -o /dev/null https://www.sublimetext.com/ | grep download | grep amd64 | cut -d \" -f 4)
 
 # packages_base=(
 packages+=(
     # Essentials
     "vim"
     "tmux"
+    "byobu"
     "tree"
     "git"
     "colordiff"
@@ -112,7 +113,7 @@ else
         # sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > sudo tee /etc/apt/sources.list.d/arc-theme.list"
         # wget -nv http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key -O Release.key
         # sudo apt-key add - < Release.key
-        "arc-theme"
+        # "arc-theme"
     )
     urls+=(
         $url_chrome
@@ -145,7 +146,7 @@ packages_pip+=(
     "requests"
     "crypto"
     "numpy"
-    "matplotlib"
+    # "matplotlib"
     "requests[security]"
     # keyczar
     # nacl
@@ -175,7 +176,7 @@ selected_urls=""
 for u in "${urls[@]}"; do
     selected_urls+="wget $u; "
 done
-selected_urls+="sudo dpkg -i ./*.deb"
+selected_urls+="sudo dpkg -i ./*.deb && sudo apt install -f"
 
 if $install; then
     echo "installing..."
@@ -183,6 +184,9 @@ if $install; then
     eval $selected_packages
     eval $selected_pip
     eval $selected_urls
+    # Sublime
+    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 elif $print; then
     echo "printing out installation commands..."
     echo $selected_repos
