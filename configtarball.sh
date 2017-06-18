@@ -1,7 +1,6 @@
 #!/bin/bash
 # Handles backup of config files
-
-WORKING_DIR=~/code
+# Note it creates temp dir and tarball in working dir
 
 config_dir=~/code
 backup=configs
@@ -36,7 +35,7 @@ cp -a $config_dir/External/Hack/build/ttf/* $backup/Hack/
 
 echo "Tarballing"
 sleep 0.1  # crashes unless you wait
-tar czf $tarfile -C $WORKING_DIR $backup
+tar czf $tarfile $backup
 
 echo "Cleanup"
 rm -rf $backup
