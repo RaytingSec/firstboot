@@ -7,7 +7,7 @@ eval set -- "$OPTS"
 libraries=false
 torrents=false
 symlinks=false
-dir=""
+dir=$(basename $dir)
 while true; do
     case "$1" in
         -l | --libraries ) libraries=true; shift;;
@@ -57,11 +57,11 @@ if $symlinks; then
     ln -s $dir/dev ~/dev
     ln -s $dir/Dropbox ~/Dropbox
     ln -s $dir/Code ~/code
-    ln -s ~/code/Scripts/Bash ~/bin
-    ln -s ~/code/Scripts/Python ~/py
+    ln -s ./code/Scripts/Bash ~/bin
+    ln -s ./code/Scripts/Python ~/py
 
-    ln -s ~/code/cryptopals ~/crypto
-    ln -s ~/code/stockfighter ~/stock
+    ln -s ./code/cryptopals ~/crypto
+    ln -s ./code/stockfighter ~/stock
 
-    ln -s ~/Dropbox/Documents/SJSU/Courses ~/courses
+    ln -s ./Dropbox/Documents/SJSU/Courses ~/courses
 fi
