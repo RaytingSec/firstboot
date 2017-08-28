@@ -46,8 +46,8 @@ packages+=(
     "tree"
     "git"
     "colordiff"
-    "software-properties-common "
-    "ppa-purge "
+    "software-properties-common"
+    "ppa-purge"
     # Sys monitor
     "htop"
     "jnettop"
@@ -69,23 +69,24 @@ packages+=(
     "finger"
     "hping3"
     # Fortunes
-    "fortunes-debian-hints "
-    "fortunes-spam "
-    "fortunes-ubuntu-server "
+    "fortunes-debian-hints"
+    "fortunes-spam"
+    "fortunes-ubuntu-server"
     # For fun
     "bsdgames"
-    "bsdgames-nonfree "
+    "bsdgames-nonfree"
 )
 
 if $host; then
     packages+=(
         "cpufrequtils"
         "tlp"
-        "pm-utils "
-        "lm-sensors "
-        "nautilus-dropbox "
-        "network-manager-openvpn-gnome "
-        "youtube-dl "
+        "pm-utils"
+        "lm-sensors"
+        "solaar-gnome3"
+        "nautilus-dropbox"
+        "network-manager-openvpn-gnome"
+        "youtube-dl"
     )
     urls+=(
         $url_slack
@@ -103,7 +104,7 @@ if $server; then
     )
 else
     packages_gui=(
-        "fonts-hack-otf "
+        "fonts-hack-otf"
         "simplescreenrecorder"
         "vlc"
         # Chrome dependencies
@@ -123,10 +124,10 @@ fi
 packages+=(
     # Dev tools
     "httpie"
-    "python3-pip "
+    "python3-pip"
     # Security
     "sox"
-    "libsox-fmt-mp3 "
+    "libsox-fmt-mp3"
     "radare2"
     "scanmem"
     "hexedit"
