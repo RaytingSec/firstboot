@@ -36,7 +36,7 @@ sudo cp $dir/foxsay/rayting.cow /usr/share/cowsay/cows/
 
 # if $dev
 # mkdir -p ~/.config/sublime-text-3/Packages/User/
-# wget --directory-prefix="~/.config/sublime-text-3/Installed Packages" https://packagecontrol.io/Package%20Control.sublime-package
+wget --directory-prefix="/home/$USER/.config/sublime-text-3/Installed Packages" https://packagecontrol.io/Package%20Control.sublime-package
 # wget https://packagecontrol.io/Package%20Control.sublime-package
 # mv "Package Control.sublime-package" ~/.config/sublime-text-3/Packages/User/
 # mv $dir/sublime-config/*.sublime* ~/.config/sublime-text-3/Packages/User/
