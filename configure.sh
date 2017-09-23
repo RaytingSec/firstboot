@@ -90,20 +90,22 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 
 # Nautilus
-gsettings set org.gnome.nautilus.window-state sidebar-width 180
-gsettings set org.gnome.nautilus.window-state start-with-sidebar true
-gsettings set org.gnome.nautilus.window-state start-with-location-bar true
-gsettings set org.gnome.nautilus.preferences default-sort-order 'type'
-gsettings set org.gnome.nautilus.preferences sort-directories-first true
-gsettings set org.gnome.nautilus.preferences show-hidden-files true
-gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
-gsettings set org.gnome.nautilus.list-view use-tree-view true
 gsettings set org.gnome.nautilus.list-view default-zoom-level 'smaller'
+gsettings set org.gnome.nautilus.list-view use-tree-view true
+gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
+gsettings set org.gnome.nautilus.preferences default-sort-order 'type'
+gsettings set org.gnome.nautilus.preferences enable-interactive-search false
+gsettings set org.gnome.nautilus.preferences show-hidden-files true
+gsettings set org.gnome.nautilus.preferences sort-directories-first true
+gsettings set org.gnome.nautilus.window-state sidebar-width 180
+gsettings set org.gnome.nautilus.window-state start-with-location-bar true
+gsettings set org.gnome.nautilus.window-state start-with-sidebar true
 
 # File Chooser
 gsettings set org.gtk.Settings.FileChooser clock-format '24h'
-gsettings set org.gtk.Settings.FileChooser show-size-column true
 gsettings set org.gtk.Settings.FileChooser show-hidden true
+gsettings set org.gtk.Settings.FileChooser show-size-column true
+gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 gsettings set org.gtk.Settings.FileChooser sort-order 'ascending'
 
 # Gedit
