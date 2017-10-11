@@ -52,6 +52,7 @@ packages+=(
     "htop"
     "jnettop"
     "iotop"
+    "glances"
     # Cowsay stuff
     "fortune"
     # "fortunes"
@@ -142,6 +143,7 @@ packages_pip+=(
     # "pip"
     "virtualenv"
     "setuptools"
+    "ipython"
     "bs4"
     "markdown"
     "requests"
