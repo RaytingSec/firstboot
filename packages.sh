@@ -158,6 +158,10 @@ urls+=(
     $url_sublime
 )
 
+# if vm
+# open-vm-tools
+# open-vm-tools-{desktop,dkms}  <- doesn't appear to be needed
+
 selected_repos=""
 for r in "${repos[@]}"; do
     selected_repos+="sudo add-apt-repository -y $r; "
