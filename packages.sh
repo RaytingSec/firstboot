@@ -137,7 +137,8 @@ packages+=(
     "sqlmap"
     "wireshark"
     "masscan"
-    "zmap"
+    #"zmap"
+    "inotify-tools"
 )
 packages_pip+=(
     # "pip"
