@@ -25,8 +25,8 @@ packages=(
 
     "cowsay"
     "fortune"
+    "fortunes"
     "fortunes-debian-hints"
-    "fortunes-spam"
     "fortunes-ubuntu-server"
 )
 selected_packages=""
@@ -38,6 +38,7 @@ sudo apt install -y $selected_packages
 # Configure
 mv /tmp/linux-config/.bash* ~/
 sudo cp /tmp/foxsay/rayting.cow /usr/share/cowsay/cows/
+sudo rm /usr/share/games/fortunes/{men-women,zippy,ascii-art,ethnic}*
 
 mv /tmp/linux-config/.vimrc ~/
 mkdir -p ~/.vim/colors
