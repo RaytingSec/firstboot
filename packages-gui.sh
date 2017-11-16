@@ -7,10 +7,11 @@ sudo apt update
 
 packages=(
     "fonts-hack-otf"
-    "vlc"
+    # "vlc"
     "simplescreenrecorder"
     "keepassxc"
     "firefox"
+    "chromium-browser"
 )
 selected_packages=""
 for p in "${packages[@]}"; do
@@ -19,4 +20,4 @@ done
 sudo apt install -y $selected_packages
 
 # VLC config
-cp /tmp/linux-config/vlc-qt-interface.conf ~/.config/vlc
+cp /tmp/configs/linux-config/vlc-qt-interface.conf ~/.config/vlc

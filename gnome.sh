@@ -2,9 +2,6 @@
 
 # Theme
 printf "[Settings]\ngtk-application-prefer-dark-theme=1\n" >> ~/.config/gtk-3.0/settings.ini
-gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Grey-Dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Arc'
-gsettings set org.gnome.shell.extensions.user-theme name 'Arc-Grey-Dark'
 
 # Shell
 gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 9'

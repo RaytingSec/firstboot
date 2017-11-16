@@ -9,7 +9,7 @@ sudo apt install -y sublime-text
 # Configure
 mkdir -p ~/.config/sublime-text-3/Packages/User/
 wget --directory-prefix ~/.config/sublime-text-3/Installed\ Packages "https://packagecontrol.io/Package Control.sublime-package"
-cp /tmp/sublime-config/*.sublime* ~/.config/sublime-text-3/Packages/User/
+cp /tmp/configs/sublime-config/*.sublime* ~/.config/sublime-text-3/Packages/User/
 
 # Default application
 sudo sed -i 's/gedit/sublime_text/g' /etc/gnome/defaults.list

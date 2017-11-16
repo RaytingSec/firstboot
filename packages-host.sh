@@ -1,6 +1,7 @@
 #!/bin/bash
 
 packages=(
+    "vlc"
     "clementine"
     "bsdgames"
     "bsdgames-nonfree"
@@ -20,8 +21,6 @@ done
 sudo apt install -y $selected_packages
 
 packages_pip+=(
-    "ipython"
-    "virtualenv"
     "setuptools"
     "bs4"
     "markdown"
@@ -33,13 +32,7 @@ packages_pip+=(
     # keyczar
     # nacl
 )
-sudo -H pip3 install --upgrade pip
 for p in "${packages_pip[@]}"; do
     selected_pip+=$p" "
 done
-sudo -H pip3 install $selected_pip
-
-# Python configs
-ipython profile create
-mv /tmp/linux-config/ipython_config.py ~/.ipython/profile_default/
-cp /tmp/linux-config/.py_autovenv
+sudo -H pip3 install --upgrade $selected_pip

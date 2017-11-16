@@ -4,7 +4,7 @@
 
 config_dir=~/code
 backup=configs
-tarfile=configs.tar.gz
+tarfile=$backup.tar.gz
 
 # End dir
 mkdir $backup

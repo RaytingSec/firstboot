@@ -35,16 +35,24 @@ for p in "${packages[@]}"; do
 done
 sudo apt install -y $selected_packages
 
+# Python
+sudo -H pip3 install --upgrade pip
+sudo -H pip3 install --upgrade ipython virtualenv
+
+ipython profile create
+cp /tmp/configs/linux-config/ipython_config.py ~/.ipython/profile_default/
+cp /tmp/configs/linux-config/.py_autovenv ~/
+
 # Configure
-mv /tmp/linux-config/.bash* ~/
-sudo cp /tmp/foxsay/rayting.cow /usr/share/cowsay/cows/
+cp /tmp/configs/linux-config/.bash* ~/
+sudo cp /tmp/configs/foxsay/rayting.cow /usr/share/cowsay/cows/
 sudo rm /usr/share/games/fortunes/{men-women,zippy,ascii-art,ethnic}*
 
-mv /tmp/linux-config/.vimrc ~/
+cp /tmp/configs/linux-config/.vimrc ~/
 mkdir -p ~/.vim/colors
-mv /tmp/molokai.vim ~/.vim/colors
+cp /tmp/configs/molokai/molokai.vim ~/.vim/colors
 
-mv /tmp/linux-config/.gitconfig ~/
-mv /tmp/linux-config/.tmux.conf ~/
+cp /tmp/configs/linux-config/.gitconfig ~/
+cp /tmp/configs/linux-config/.tmux.conf ~/
 
-cat /tmp/linux-config/inputrc | sudo -E tee -a /etc/inputrc > /dev/null
+cat /tmp/configs/linux-config/inputrc | sudo -E tee -a /etc/inputrc > /dev/null
