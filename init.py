@@ -39,15 +39,17 @@ sh.append('core.sh')
 
 if args.vm:
     sh.append('vm.sh')
-    if Environment is 'gnome':
-        sh.append('gnome-vm.sh')
 if args.gui:
+    sh.append('core-gui.sh')
     sh.append('packages-gui.sh')
     sh.append('sublime.sh')
     sh.append('arc-theme.sh')
     if Environment is 'gnome':
         sh.append('gnome.sh')
         sh.append('extensions.sh')
+if args.vm and args.gui:
+    if Environment is 'gnome':
+        sh.append('gnome-vm.sh')
 if args.host:
     if Machine is 'laptop':
         sh.append('laptop.sh')
