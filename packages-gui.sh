@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# sudo add-apt-repository -y ppa:gnome-terminator
+# sudo apt udpate
+
 packages=(
     "fonts-hack-otf"
+    # "terminator"
 )
 selected_packages=""
 for p in "${packages[@]}"; do

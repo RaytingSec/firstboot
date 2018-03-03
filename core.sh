@@ -3,6 +3,7 @@
 sudo apt update
 sudo apt upgrade -y
 packages=(
+    "bash-completion"
     "vim"
     "tmux"
     "byobu"
