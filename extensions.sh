@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# dconf dump /org/gnome/shell/extensions/
-
 # Extensions
 # https://extensions.gnome.org/extension/277/impatience/
 # https://extensions.gnome.org/extension/307/dash-to-dock/
@@ -9,6 +7,7 @@
 # https://extensions.gnome.org/extension/495/topicons/
 # https://extensions.gnome.org/extension/302/windowoverlay-icons/
 
+# dconf dump /org/gnome/shell/extensions/
 ext_path="/org/gnome/shell/extensions"
 
 # ext_name="clipboard-indicator"
@@ -18,7 +17,7 @@ ext_path="/org/gnome/shell/extensions"
 # dconf write $ext_path/$ext_name/preview-size 40
 
 ext_name="windowoverlay-icons"
-dconf write $ext_path/$ext_name/icon-size 48
+dconf write $ext_path/$ext_name/icon-size 64
 dconf write $ext_path/$ext_name/icon-size-relative false
 dconf write $ext_path/$ext_name/icon-vertical-alignment "'middle'"
 dconf write $ext_path/$ext_name/icon-opacity-blur 192
@@ -73,6 +72,6 @@ dconf write $ext_path/$ext_name/tray-pos "'right'"
 dconf write $ext_path/$ext_name/icon-saturation 0.0
 dconf write $ext_path/$ext_name/tray-order 6
 
-dconf write /org/gnome/shell/enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com', 'battery-percentage@nohales.org', 'dash-to-dock@micxgx.gmail.com', 'windowoverlay-icons@sustmidown.centrum.cz', 'user-theme@gnome-shell-extensions.gcampax.github.com','impatience@gfxmonk.net', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net']"
+# dconf write /org/gnome/shell/enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com', 'battery-percentage@nohales.org', 'dash-to-dock@micxgx.gmail.com', 'windowoverlay-icons@sustmidown.centrum.cz', 'user-theme@gnome-shell-extensions.gcampax.github.com','impatience@gfxmonk.net', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net']"
 
 sudo dconf update
