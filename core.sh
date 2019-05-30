@@ -1,4 +1,4 @@
-#!/bin/bash
+# #!/bin/bash
 
 sudo apt update
 sudo apt upgrade -y
@@ -9,8 +9,10 @@ packages=(
     "byobu"
     "tree"
     "colordiff"
-    "software-properties-common"
-    "ppa-purge"
+
+    # Debian family:
+    # "software-properties-common"
+    # "ppa-purge"
     "git"
     "python3-pip"
 
@@ -25,10 +27,13 @@ packages=(
     "httpie"
 
     "cowsay"
-    "fortune"
-    "fortunes"
-    "fortunes-debian-hints"
-    "fortunes-ubuntu-server"
+    # Debian family:
+    # "fortune"
+    # "fortunes"
+    # "fortunes-debian-hints"
+    # "fortunes-ubuntu-server"
+    # Fedora family:
+    "fortune-mod"
 )
 selected_packages=""
 for p in "${packages[@]}"; do
@@ -57,3 +62,5 @@ cp /tmp/configs/linux-config/.gitconfig ~/
 cp /tmp/configs/linux-config/.tmux.conf ~/
 
 cat /tmp/configs/linux-config/inputrc | sudo -E tee -a /etc/inputrc > /dev/null
+
+bash /tmp/configs/fortunes/build.sh  # Create and install custom fortunes
