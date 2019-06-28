@@ -16,7 +16,7 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-typ
 # Nightlight
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
-gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature uint32 5500
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature uint32 5000
 
 # Touchpad
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
