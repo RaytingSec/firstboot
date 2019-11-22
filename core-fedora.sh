@@ -51,7 +51,7 @@ cp /tmp/firstboot/linux-config/.py_autovenv ~/
 
 echo "Configuring bash/shell..."
 cp /tmp/firstboot/linux-config/.bash* ~/
-sudo cp /tmp/firstboot/foxsay/rayting.cow /usr/share/cowsay/cows/
+sudo cp /tmp/firstboot/foxsay/rayting.cow /usr/share/cowsay/
 sudo rm /usr/share/games/fortunes/{men-women,zippy,ascii-art,ethnic}*
 # bash /tmp/firstboot/fortune/build.sh  # Create and install custom fortunes
 sudo cp /tmp/firstboot/fortune/hugs* /usr/share/games/fortunes/  # Workaround for fortune's build.sh
