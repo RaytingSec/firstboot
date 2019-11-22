@@ -1,4 +1,4 @@
-pip install selenium
+sudo pip3 install selenium
 
 # Get the latest release from https://github.com/mozilla/geckodriver/releases
 # url=https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz

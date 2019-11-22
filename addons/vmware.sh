@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Installation
+# wget --user-agent="Mozilla 5.0" --trust-server-names https://www.vmware.com/go/getworkstation-linux
 ./VMware-Workstation-Full-12.5.0-4352439.x86_64.bundle
 # append `NoDisplay=true` to /usr/share/applications/ vmware-player and vmware-netcfg desktop files
 echo "NoDisplay=true" | sudo tee -a /usr/share/applications/vmware-player.desktop  # Could remove vmware-netcfg too
