@@ -14,7 +14,7 @@ packages=(
     # Host machine things
     "xserver-xorg-input-synaptics"  # touchpad fix
     "cpufrequtils"
-    "lm-sensors"
+    "lm_sensors"
     "smartmontools"
     "tlp"  # Disabled since power management may break or negatively alter things
     "tp-smapi-dkms"  # tlp thinkpad extra stuff
@@ -29,12 +29,12 @@ packages=(
     "gparted"
     "keepassxc"
     "firefox"
-    "chromium-browser"
+    "chromium"
     "vlc"
     "clementine"
     "simplescreenrecorder"
     "pdfmod"
-    "gnome-power-statistics"
+    "gnome-power-manager"
     # "gnome-..."
     # debian distros
     # "bsdgames"
@@ -52,6 +52,7 @@ packages=(
     "net-tools"
     "nodejs"
     "nmap"
+    "whois"
     "masscan"
     "sqlitebrowser"
 
@@ -66,25 +67,6 @@ for p in "${packages[@]}"; do
     selected_packages+=$p" "
 done
 sudo apt install -y $selected_packages
-
-# Messaging packages
-wget --no-clobber --continue --trust-server-names \
-    "https://discordapp.com/api/download?platform=linux&format=deb" \
-    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" \
-    "$(wget -qO- https://slack.com/downloads/instructions/linux | grep amd64 | cut -d \" -f 4)"
-sudo apt install -y ./*.deb
-# Signal
-# curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
-# echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
-# sudo apt update && sudo apt install -y signal-desktop
-
-# Youtube-DL
-sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl
-# sudo dnf install AtomicParsley  # Fedora 29 needs this package to add metadata
-
-# VLC config
-cp /tmp/configs/linux-config/vlc-qt-interface.conf ~/.config/vlc
 
 # Python packages
 packages_pip+=(
@@ -103,4 +85,31 @@ packages_pip+=(
 for p in "${packages_pip[@]}"; do
     selected_pip+=$p" "
 done
-sudo -H pip3 install --upgrade $selected_pip
+sudo pip3 install $selected_pip
+
+# Messaging packages
+wget --no-clobber --continue --trust-server-names \
+    "https://discordapp.com/api/download?platform=linux&format=deb" \
+    "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm" \
+    "$(wget -qO- https://slack.com/downloads/instructions/linux | grep amd64 | cut -d \" -f 4)"
+sudo apt install -y ./*.deb
+# Fedora Chrome
+# https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+
+# Signal
+# curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+# echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+# sudo apt update && sudo apt install -y signal-desktop
+
+# lm_sensors config
+sudo sensors-detect --auto
+
+# Youtube-DL
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+sudo dnf install -y ffmpeg  # Dependency
+# sudo dnf install AtomicParsley  # Fedora 29 needs this package to add metadata, seems to be unecessary in Fedora 30
+
+# VLC config
+cp /tmp/firstboot/linux-config/vlc-qt-interface.conf ~/.config/vlc
+

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Running core-gui.sh"
+
+echo "Switching to grub boot to console mode..."
 # substitute change line in /etc/default/grub
 # GRUB_CMDLINE_LINUX_DEFAULT=""
 # sudo ...

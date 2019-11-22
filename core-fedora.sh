@@ -1,10 +1,9 @@
 # #!/bin/bash
 
-echo "Running core.sh"
+echo "Running core-fedora.sh"
 
 echo "Initial update..."
-sudo apt update
-sudo apt upgrade -y
+sudo dnf update -y
 
 echo "Installing core packages..."
 packages=(
@@ -17,10 +16,6 @@ packages=(
     "git"
     "python3-pip"
 
-    # Debian family:
-    "software-properties-common"
-    "ppa-purge"
-
     "htop"
     "jnettop"
     "iotop"
@@ -31,16 +26,13 @@ packages=(
     "httpie"
 
     "cowsay"
-    "fortune"
-    "fortunes"
-    "fortunes-debian-hints"
-    "fortunes-ubuntu-server"
+    "fortune-mod"
 )
 selected_packages=""
 for p in "${packages[@]}"; do
     selected_packages+=$p" "
 done
-sudo apt install -y $selected_packages
+sudo dnf install -y $selected_packages
 
 echo "Installing pip packages..."
 sudo pip3 install --upgrade pip
@@ -49,7 +41,7 @@ sudo pip3 install --upgrade ipython virtualenv
 # Configure
 
 echo "Backing up home directory's original configs..."
-sudo cp -r /home/`whoami`{,.bak}  # Warning, this should be used in fresh install with minimal home directory
+# sudo cp -r /home/`whoami`{,.bak}  # Warning, this should be used in fresh install with minimal home directory
 
 echo "Configuring python..."
 ipython profile create

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# sudo apt install -y gnome-tweaks
+# sudo dnf install -y gnome-tweaks
+
 # Theme
 # printf "[Settings]\ngtk-application-prefer-dark-theme=1\n" >> ~/.config/gtk-3.0/settings.ini  # No longer used
 # >3.28 theme
@@ -7,16 +10,22 @@ gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
-gsettings set org.gnome.shell.extensions.user-theme name ''  # Set to default theme
+# gsettings set org.gnome.shell.extensions.user-theme name ''  # Set to default theme, note theme is disabled by default
 
 # Shell
-gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 10'  # Should set this in a script that installs Hack font
+# gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 10'  # Currently runs in hack font script, consider having here if you use different desktop environments
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface clock-format '24h'
 gsettings set org.gnome.desktop.interface clock-show-date true
-# gsettings set org.gnome.desktop.background picture-uri 'file://'$HOME'/Pictures/Wallpapers/background.png'
-# gsettings set org.gnome.desktop.screensaver picture-uri 'file://'$HOME'/Pictures/Wallpapers/lockscreen.jpg'
+gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'
+gsettings set org.gnome.desktop.screensaver picture-uri 'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'
 gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'sublime_text.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
+
+# Search
+# Significantly speed up searching by disabling extraneous search providers
+gsettings set org.gnome.desktop.search-providers disable-external false
+gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Boxes.desktop', 'org.gnome.Photos.desktop', 'org.gnome.Software.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Terminal.desktop']"
+
 
 # Window manager
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
@@ -25,7 +34,7 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,m
 
 # Input
 gsettings set org.gnome.desktop.peripherals.keyboard delay 250
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 14
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 25  # 40x per second
 
 # Key bindings
 gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "['<Shift><Super>Tab']"
@@ -66,14 +75,15 @@ gsettings set org.gnome.nautilus.list-view use-tree-view true
 gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
 # gsettings set org.gnome.nautilus.preferences default-sort-order 'type'
 # gsettings set org.gnome.nautilus.preferences enable-interactive-search false  # Invalid in >3.28
-gsettings set org.gnome.nautilus.preferences show-hidden-files true  # Invalid in >3.28
+# gsettings set org.gnome.nautilus.preferences show-hidden-files true  # Invalid in >3.28
 # gsettings set org.gnome.nautilus.preferences sort-directories-first true  # Invalid in >3.28
 gsettings set org.gtk.Settings.FileChooser sort-directories-first true  # sort-directories-first is now a gtk setting
 gsettings set org.gnome.nautilus.window-state sidebar-width 180
 gsettings set org.gnome.nautilus.window-state start-with-location-bar true
 gsettings set org.gnome.nautilus.window-state start-with-sidebar true
 # gsettings set org.gnome.nautilus.window-state use-experimental-views true  # Location in 3.28
-gsettings set org.gnome.nautilus.preferences use-experimental-views true  # Location in 3.30
+# gsettings set org.gnome.nautilus.preferences use-experimental-views true  # Location in 3.30
+# Experimental views breaks stuff
 
 # File Chooser
 gsettings set org.gtk.Settings.FileChooser clock-format '24h'
