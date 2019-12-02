@@ -8,7 +8,8 @@
 # Downloading
 
 # mkdir flashplayer && cd flashplayer
-url=$(wget -qO- https://www.adobe.com/support/flashplayer/debug_downloads.html | grep "Flash Player Projector content debugger" | cut -d \" -f 2)
+# url=$(wget -qO- https://www.adobe.com/support/flashplayer/debug_downloads.html | grep "Flash Player Projector content debugger" | cut -d \" -f 2)  # URL times out with wget
+url="https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux_debug.x86_64.tar.gz"
 wget $url
 mkdir flashplayer
 tar -xvzf $(basename $url) -C flashplayer
