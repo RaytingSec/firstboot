@@ -20,14 +20,18 @@ echo "NoDisplay=true" | sudo tee -a /usr/share/applications/vmware-player.deskto
 # Configure
 # First launch compiles kernel headers, exit after completion
 # refer to notes on kernel headers fix
-sudo vmware
+# git clone ... && cd ...
+# make
+# sudo make install
+# sudo systemctl restart vmware.service
 
 # Nvidia graphics fix. Seems unnecessary now.
 # might need to fix package: https://bbs.archlinux.org/viewtopic.php?id=222520
 # echo "mks.gl.allowBlacklistedDrivers = TRUE" >> ~/.vmware/preferences
 
-cd ~/vmware/
-find -name "*.vmx" -exec vmware {} \;
+# This no longer is time efficient on Workstation 15.5 or later
+# cd ~/vmware/
+# find -name "*.vmx" -exec vmware {} \;
 
 # Fedora
 # bug where ovftool can't run, causing .ova files to fail to import, needs some lib files
