@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Java JRE required to run thinkorsim
-sudo dnf  install java-1.8.0-openjdk
+sudo dnf install java-1.8.0-openjdk
 
 wget https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh
 chmod +x thinkorswim_installer.sh

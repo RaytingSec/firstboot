@@ -43,6 +43,8 @@ packages=(
     "gnome-power-manager"
     "bsd-games"
     "inotify-tools"
+    "transmission"
+    "guake"
 
     # Entertainment
     "vlc"
@@ -53,6 +55,7 @@ packages=(
     # Various dependencies for compiling
     "gcc-c++"
     "libdrm-devel"
+    "python3-devel"  # used for building talib python bindings
 
     # Security and dev
     "net-tools"
