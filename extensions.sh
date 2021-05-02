@@ -49,10 +49,10 @@ ext_path="/org/gnome/shell/extensions"
 # dconf write $ext_path/$ext_name/preview-size 40
 
 ext_name="windowoverlay-icons"
-dconf write $ext_path/$ext_name/icon-size 64
+dconf write $ext_path/$ext_name/icon-size 128
 dconf write $ext_path/$ext_name/icon-size-relative false
 dconf write $ext_path/$ext_name/icon-vertical-alignment "'middle'"
-dconf write $ext_path/$ext_name/icon-opacity-blur 192
+dconf write $ext_path/$ext_name/icon-opacity-blur 224
 dconf write $ext_path/$ext_name/background-alpha 0
 dconf write $ext_path/$ext_name/icon-opacity-focus 64
 dconf write $ext_path/$ext_name/icon-horizontal-alignment "'middle'"

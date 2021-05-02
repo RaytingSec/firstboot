@@ -9,7 +9,7 @@ sudo apt upgrade -y
 echo "Installing core packages..."
 packages=(
     "bash-completion"
-    "vim"
+    "neovim"
     "tmux"
     "tree"
     # "colordiff"

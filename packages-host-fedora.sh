@@ -18,15 +18,15 @@ sudo dnf update -y
 # Install stuff
 packages=(
     # Host machine things
-    "cpufrequtils"
+    #"cpufrequtils"
     "lm_sensors"
     "smartmontools"
     "nautilus-dropbox"
     "solaar"  # Logitech receiver client
     # "NetworkManager-openvpn"
     # "NetworkManager-openvpn-gnome"
-    "blueman"
-    "redshift-gtk"
+    #"blueman"
+    #"redshift-gtk"
     
     # tlp
     # NOTE: tlp seems to cause bugs when trying to optimize battery life. Disabled by default.
@@ -39,30 +39,31 @@ packages=(
     "keepassxc"
     "firefox"
     "chromium"
-    "simplescreenrecorder"
+    #"simplescreenrecorder"
     "gnome-power-manager"
     "bsd-games"
-    "inotify-tools"
     "transmission"
-    "guake"
+    # "guake"
+    # "inotify-tools"
 
     # Entertainment
     "vlc"
-    "clementine"
+    "strawberry"
     "lpf-spotify-client"
-    "steam"
+    # "steam"
 
     # Various dependencies for compiling
-    "gcc-c++"
-    "libdrm-devel"
+    #"gcc-c++"
+    #"libdrm-devel"
     "python3-devel"  # used for building talib python bindings
 
     # Security and dev
     "net-tools"
-    "nodejs"
+    "nodejs"  # Required for subl htmlprettify
     "nmap"
     "whois"
     "masscan"
+    "libpcap-devel"  # Dependency for masscan
     "sqlitebrowser"
     #"zmap"
     "wireshark"
@@ -97,14 +98,14 @@ packages_pip+=(
 for p in "${packages_pip[@]}"; do
     selected_pip+=$p" "
 done
-sudo pip3 install $selected_pip
+# sudo pip3 install $selected_pip
 
 # Additional packages
 chrome_fedora_url="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
-slack_fedora_url="$(wget -qO- https://slack.com/downloads/instructions/fedora | grep x86_64 | cut -d \" -f 4)"
+slack_fedora_url="$(wget -qO- https://slack.com/downloads/instructions/fedora | grep -oE 'https://downloads.slack-edge.com/linux_releases/slack-([0-9]|\.|-)+.fc21.x86_64.rpm')"
 # discord_fedora_url=""  # No longer installign discord by default. Stick to web app.
-wget --no-clobber --continue --trust-server-names $chrome_fedora_url $slack_fedora_url
-sudo dnf install -y ./*.rpm
+# wget --continue --trust-server-names $chrome_fedora_url $slack_fedora_url
+sudo dnf install -y $chrome_fedora_url $slack_fedora_url
 
 # lm_sensors config
 sudo sensors-detect --auto
@@ -113,22 +114,14 @@ sudo sensors-detect --auto
 # .m4a files require this gstreamer plugin for some reason
 sudo dnf install -y gstreamer1-libav  # gstreamer-plugins-bad-nonfree
 
-# Youtube-DL
-sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl
-sudo dnf install -y ffmpeg AtomicParsley # Dependencies
-# ffmpeg: required for combining audio/video formats
-# AtomicParsely: needed to add metadata to m4a and some other formats
-# ERROR: AtomicParsley was not found. Please install.
-
 # VLC config
 # Doesn't seem to work
 # cp /tmp/firstboot/linux-config/vlc-qt-interface.conf ~/.config/vlc
 
 # OpenVPN
 # Fedora OpenVPN lacks update-resolv-conf.sh tool, need to install manually
-sudo wget https://raw.githubusercontent.com/alfredopalhares/openvpn-update-resolv-conf/master/update-resolv-conf.sh -O /etc/openvpn/update-resolv-conf
-sudo chmod +x /etc/openvpn/update-resolv-conf
+# sudo wget https://raw.githubusercontent.com/alfredopalhares/openvpn-update-resolv-conf/master/update-resolv-conf.sh -O /etc/openvpn/update-resolv-conf
+# sudo chmod +x /etc/openvpn/update-resolv-conf
 
 # Additional software
 # telegram.sh

@@ -52,15 +52,18 @@ mkdir -p $dir/torrent/srcfin
 mkdir -p $dir/torrent/srcload
 
 # Symlinks
+ln -s ./Documents/notes ~/notes
+ln -s ./notes/technical ~/technotes
+
 ln -s $dir/Dropbox ~/Dropbox
 
 ln -s $dir/Code ~/code
 ln -s ./code/Scripts/Bash ~/bin
 ln -s ./code/Scripts/Python ~/py
 ln -s ./code/vegas ~/vegas
+ln -s ./code/trader ~/trader
 
-# ln -s $dir/vm ~/vmware
+ln -s /media/sda/data/vm ~/vmware
 # ln -s $dir/dev ~/dev
 
-ln -s ./code/cryptopals ~/crypto
-ln -s ./code/stockfighter ~/stock
+# ln -s ./code/cryptopals ~/crypto

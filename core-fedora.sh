@@ -9,6 +9,7 @@ echo "Installing core packages..."
 packages=(
     "bash-completion"
     "vim"
+    "neovim"
     "tmux"
     "tree"
     # "colordiff"
@@ -16,14 +17,15 @@ packages=(
     "git"
     "python3-pip"
 
+    "bpytop"
     "htop"
-    "jnettop"
+    # "jnettop"  # Package appears to have been removed
     "iotop"
 
     "sshfs"
-    "openvpn"
+    # "openvpn"
     "curl"
-    "httpie"
+    # "httpie"
 
     "cowsay"
     "fortune-mod"
@@ -36,7 +38,7 @@ sudo dnf install -y $selected_packages
 
 echo "Installing pip packages..."
 sudo pip3 install --upgrade pip
-sudo pip3 install --upgrade ipython virtualenv
+# sudo pip3 install --upgrade ipython virtualenv
 
 # Configure
 
@@ -66,5 +68,4 @@ echo "Copying over other dotfiles..."
 cp /tmp/firstboot/linux-config/.gitconfig ~/
 cp /tmp/firstboot/linux-config/.tmux.conf ~/
 
-# No longer using case insensitive bash completion
-# cat /tmp/firstboot/linux-config/inputrc | sudo -E tee -a /etc/inputrc > /dev/null
+cat /tmp/firstboot/linux-config/inputrc | sudo -E tee -a /etc/inputrc > /dev/null

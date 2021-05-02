@@ -2,6 +2,8 @@
 
 # sudo apt install -y gnome-tweaks
 # sudo dnf install -y gnome-tweaks
+# gnome-power-manager
+# baobab
 
 # Theme
 # printf "[Settings]\ngtk-application-prefer-dark-theme=1\n" >> ~/.config/gtk-3.0/settings.ini  # No longer used
@@ -14,9 +16,11 @@ gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
 
 # Shell
 # gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 10'  # Currently runs in hack font script, consider having here if you use different desktop environments
-gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface clock-format '24h'
+gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.interface clock-show-weekday true
+
 gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'
 gsettings set org.gnome.desktop.screensaver picture-uri 'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'
 gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'sublime_text.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
@@ -24,7 +28,7 @@ gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'sublime_text.d
 # Search
 # Significantly speed up searching by disabling extraneous search providers
 gsettings set org.gnome.desktop.search-providers disable-external false
-gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Boxes.desktop', 'org.gnome.Photos.desktop', 'org.gnome.Software.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Terminal.desktop']"
+gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Boxes.desktop', 'org.gnome.Photos.desktop', 'org.gnome.Software.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Terminal.desktop', 'firefox.desktop']"
 
 
 # Window manager

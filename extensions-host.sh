@@ -31,10 +31,11 @@ dconf write $ext_path/$ext_name/dock-position "'BOTTOM'"
 
 ext_name="caffeine"
 dconf write $ext_path/$ext_name/enable-fullscreen false
+dconf write $ext_path/$ext_name/show-notifications false
 dconf write $ext_path/$ext_name/user-enabled false
 
 ext_name="clock_override"
-dconf write $ext_path/$ext_name/override-string "'%a %b %d %T %Z'"
+dconf write $ext_path/$ext_name/override-string "'%a  %b  %d  %T  %Z'"
 
 ext_name="status-area-horizontal-spacing"
 dconf write $ext_path/$ext_name/hpadding 8
@@ -81,13 +82,13 @@ dconf write $ext_path/$ext_name/hpadding 8
 # dconf write $ext_path/$ext_name/workspace-caption-taskbar-tooltips true
 # dconf write $ext_path/$ext_name/workspace-captions true
 
-# ext_name="world-clock"
-dconf write $ext_path/$ext_name/active-buttons "['KSFO', 'KSLK,KALB,KBGM,KHWV,KDKK,KJHW,KDSV,KPOU,KHTO,KELM,KGFL,KGTB,KBUF,KROC,KRME,KITH,KJFK,KLGA,KISP,KMSS,KMTP,KSWF,KNYC,KIAG,KMGJ,KFZY,KPEO,KPBG,KFRG,KMSV,KSYR,KTEB,KFOK,KART,KELZ,KHPN', 'BIRK', 'KMDW', 'RCSS']"
+ext_name="world-clock"
+dconf write $ext_path/$ext_name/active-buttons "['KNYC', '@UTC', 'RCSS']"
 dconf write $ext_path/$ext_name/button-position "'ML'"
 dconf write $ext_path/$ext_name/button-position2 "'MR'"
-dconf write $ext_path/$ext_name/hide-local true
-dconf write $ext_path/$ext_name/num-buttons int16 1
-dconf write $ext_path/$ext_name/num-buttons2 int16 1
+# dconf write $ext_path/$ext_name/hide-local true
+dconf write $ext_path/$ext_name/num-buttons 1
+dconf write $ext_path/$ext_name/num-buttons2 1
 
 ext_name="gtile"
 dconf write $ext_path/$ext_name/dngrid-sizes "'8x6,6x4,4x4,2x2'"

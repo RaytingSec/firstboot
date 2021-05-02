@@ -1,5 +1,5 @@
 #!/bin/bash
 # Install and configure powerline
 
-sudo dnf install -y powerline powerline-fonts tmux-powerline vim-powerline
+sudo apt install -y powerline fonts-powerline python3-powerline
 # todo: steps for configuration

@@ -19,3 +19,7 @@ sudo dnf install tmux xclip  # xclip or xsel are dependencies to copy to system 
 # Configure
 
 # Todo: steps to create .tmux.conf and .tmux.conf.local
+# git clone ...
+# ln -s  .tmux/.tmux.conf ~/.tmux.conf
+# cp ~/code/linux-config/.tmux.conf.local ~/
+
