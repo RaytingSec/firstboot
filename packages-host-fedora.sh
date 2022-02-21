@@ -119,6 +119,9 @@ cat /tmp/firstboot/linux-config/ipython_config.py | tee -a ~/.ipython/profile_de
 # done
 # sudo pip3 install $selected_pip
 
+# NeoVIM Semshi plugin will need `pynvim` to work
+pip3 install pynvim
+
 # lm_sensors config
 sudo sensors-detect --auto
 
