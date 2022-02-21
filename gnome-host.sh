@@ -2,7 +2,7 @@
 
 # Packages
 # sudo apt install gnome-sushi gnome-clocks
-sudo dnf install gnome-extensions-app
+sudo dnf install -y gnome-extensions-app
 
 # Power
 # gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled true
