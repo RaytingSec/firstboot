@@ -96,6 +96,10 @@ sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-open
 sudo dnf install lame\* --exclude=lame-devel
 sudo dnf group upgrade --with-optional Multimedia
 
+echo "Configuring python..."
+ipython profile create
+cat /tmp/firstboot/linux-config/ipython_config.py | tee -a ~/.ipython/profile_default/ipython_config.py
+
 # Python packages
 # packages_pip+=(
 #     # "youtube_dl"

@@ -46,9 +46,6 @@ echo "Backing up home directory's original configs..."
 # sudo cp -r /home/`whoami`{,.bak}  # Warning, this should be used in fresh install with minimal home directory
 
 echo "Configuring python..."
-ipython profile create
-cp /tmp/firstboot/linux-config/ipython_config.py ~/.ipython/profile_default/
-cat /tmp/firstboot/linux-config/ipython_config.py | tee -a ~/.ipython/profile_default/ipython_config.py
 cp /tmp/firstboot/linux-config/.py_autovenv ~/
 
 echo "Configuring bash/shell..."
