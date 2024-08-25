@@ -10,6 +10,7 @@ wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003
 unzip Hack-*-ttf.zip
 mv ttf/ hack/
 sudo mv hack/ /usr/share/fonts/
+rm Hack-*-ttf.zip
 
 # Font configuration, not sure why this is needed
 wget https://raw.githubusercontent.com/source-foundry/Hack/master/config/fontconfig/45-Hack.conf
@@ -21,4 +22,3 @@ sudo fc-cache -v
 
 # Set up as font, only applicable in Gnome
 gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 10'
-

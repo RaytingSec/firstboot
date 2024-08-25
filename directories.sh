@@ -12,18 +12,19 @@ user_libs=(
     Pictures
     Videos
 )
-for lib in "${user_libs[@]}"; do
-    # Use existing dir, or move current one to $dir
-    if [[ -d $dir/$lib ]]; then
-        rm -r ~/$lib
-        echo Removed $lib
-    else
-        mv ~/$lib $dir
-        echo Moved $lib
-    fi
-    ln -s $dir/$lib ~/$lib
-    echo Created new link to $lib
-done
+mkdir $dir
+# for lib in "${user_libs[@]}"; do
+#     # Use existing dir, or move current one to $dir
+#     if [[ -d $dir/$lib ]]; then
+#         rm -r ~/$lib
+#         echo Removed $lib
+#     else
+#         mv ~/$lib $dir
+#         echo Moved $lib
+#     fi
+#     ln -s $dir/$lib ~/$lib
+#     echo Created new link to $lib
+# done
 
 # Second drive data dir
 # Note: this is not used since it messes with nautilus' file search
@@ -55,15 +56,10 @@ mkdir -p $dir/torrent/srcload
 ln -s ./Documents/notes ~/notes
 ln -s ./notes/technical ~/technotes
 
-ln -s $dir/Dropbox ~/Dropbox
-
 ln -s $dir/Code ~/code
 ln -s ./code/Scripts/Bash ~/bin
 ln -s ./code/Scripts/Python ~/py
-ln -s ./code/vegas ~/vegas
 ln -s ./code/trader ~/trader
+ln -s ./Documents/Finance/thinkorswim ~/thinkorswim_simulated_trade
 
-ln -s /media/sda/data/vm ~/vmware
 # ln -s $dir/dev ~/dev
-
-# ln -s ./code/cryptopals ~/crypto

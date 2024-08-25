@@ -4,4 +4,4 @@ tar -xf tsetup.*.tar.xz
 sudo mv Telegram /opt
 sudo chown `whoami`:`whoami` /opt/Telegram
 rm tsetup.*.tar.xz
-#/opt/Telegram/Telegram
+/opt/Telegram/Telegram

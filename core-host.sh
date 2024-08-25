@@ -1,3 +1,4 @@
 #!/bin/bash
 
-# `HandleLidSwitch=ignore` in `/etc/systemd/logind.conf`
+# /etc/locale.conf
+# LC_TIME=C.UTF-8
