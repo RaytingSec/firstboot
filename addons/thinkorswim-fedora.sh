@@ -14,7 +14,7 @@ sudo alternatives --set java /usr/lib/jvm/java-17-zulu-openjdk/bin/java
 
 # Install Thinkorswim itself
 
-wget https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh
+wget https://tosmediaserver.schwab.com/installer/InstFiles/thinkorswim_installer.sh
 chmod +x thinkorswim_installer.sh
 ./thinkorswim_installer.sh -c  # CLI mode
 # Accept terms and conditions, use default options:

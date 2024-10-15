@@ -7,7 +7,7 @@ sudo dnf install -y tailscale
 
 # Configure
 sudo systemctl enable --now tailscaled
-# sudo tailscale set --operator=
+sudo tailscale set --operator=$USER
 
 # Use
 tailscale up --accept-routes

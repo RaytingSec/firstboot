@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Install extensions available from repos
+sudo dnf install -y \
+    gnome-shell-extension-caffeine \
+    gnome-shell-extension-blur-my-shell \
+    gnome-shell-extension-dash-to-dock \
+    gnome-shell-extension-freon \
+
 # dconf dump /org/gnome/shell/extensions/
 
 ext_path="/org/gnome/shell/extensions"
@@ -10,6 +17,7 @@ dconf write ${ext_path}/${ext_name}/apply-custom-theme true
 dconf write ${ext_path}/${ext_name}/intellihide-mode "'ALL_WINDOWS'"
 dconf write ${ext_path}/${ext_name}/middle-click-action "'quit'"
 dconf write ${ext_path}/${ext_name}/show-show-apps-button false
+dconf write ${ext_path}/${ext_name}/show-trash false
 
 ext_name="freon"
 dconf write ${ext_path}/${ext_name}/hot-sensors "['Package id 0']"

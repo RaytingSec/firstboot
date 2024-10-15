@@ -2,7 +2,9 @@
 
 # Packages
 # sudo apt install gnome-sushi gnome-clocks
-sudo dnf install -y gnome-extensions-app
+sudo dnf install -y \
+    gnome-extensions-app \
+    gnome-sound-recorder
 
 # Power
 # gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled true
