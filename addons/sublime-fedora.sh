@@ -21,4 +21,9 @@ cat <<EOT >> ~/.config/mimeapps.list
 
 [Added Associations]
 text/plain=sublime_text.desktop;
+text/markdown=sublime_text.desktop;
+
+[Default Applications]
+text/plain=sublime_text.desktop
+text/markdown=sublime_text.desktop
 EOT
