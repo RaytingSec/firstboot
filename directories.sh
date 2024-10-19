@@ -13,18 +13,18 @@ user_libs=(
     Videos
 )
 mkdir $dir
-# for lib in "${user_libs[@]}"; do
-#     # Use existing dir, or move current one to $dir
-#     if [[ -d $dir/$lib ]]; then
-#         rm -r ~/$lib
-#         echo Removed $lib
-#     else
-#         mv ~/$lib $dir
-#         echo Moved $lib
-#     fi
-#     ln -s $dir/$lib ~/$lib
-#     echo Created new link to $lib
-# done
+for lib in "${user_libs[@]}"; do
+    # Use existing dir, or move current one to $dir
+    if [[ -d $dir/$lib ]]; then
+        rm -r ~/$lib
+        echo Removed $lib
+    else
+        mv ~/$lib $dir
+        echo Moved $lib
+    fi
+    ln -s $dir/$lib ~/$lib
+    echo Created new link to $lib
+done
 
 # Second drive data dir
 # Note: this is not used since it messes with nautilus' file search

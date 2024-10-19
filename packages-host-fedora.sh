@@ -91,8 +91,9 @@ sudo dnf install -y $selected_packages
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo flatpak install -y flathub \
     flathub com.plexamp.Plexamp \
-    com.discordapp.Discord
+    com.parsecgaming.parsec
     # com.spotify.Client
+    # com.discordapp.Discord
 
 # Optional
 # Mutimedia https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/
@@ -119,7 +120,11 @@ packages_pip+=(
 for p in "${packages_pip[@]}"; do
     selected_pip+=$p" "
 done
-pip3 install $selected_pip
+# pip3 install $selected_pip
+
+sudo dnf install -y \
+    python3-virtualenv \
+    python3-ipython
 
 echo "Configuring python..."
 ipython profile create

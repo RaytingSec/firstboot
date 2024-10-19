@@ -46,12 +46,12 @@ sudo dnf install -y $selected_packages
 echo "Backing up home directory's original configs..."
 sudo cp -r /home/`whoami`{,.bak}  # This should be used in fresh install with minimal home directory
 
-echo "Configuring python..."
-cp /tmp/init/linux-config/.py_autovenv ~/.bashrc.d/
-
 echo "Configuring bash/shell..."
 mkdir ~/.bashrc.d/
 cp /tmp/init/linux-config/.bashrc.d/* ~/.bashrc.d/
+
+echo "Configuring python..."
+cp /tmp/init/linux-config/.py_autovenv ~/.bashrc.d/
 
 echo "Configuring cowsay..."
 sudo cp /tmp/init/foxsay/rayting.cow /usr/share/cowsay/cows/
