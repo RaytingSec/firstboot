@@ -59,3 +59,16 @@ core-laptop.sh
 core-gui.sh
 packages.sh
 ```
+
+## Playbooks
+
+- Run scripts:
+
+```bash
+# core-fedora
+# packages-host-fedora
+# gnome
+# addons
+```
+
+- Copy over networking configs to `/etc/NetworkManager/system-connections/`
