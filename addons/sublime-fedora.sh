@@ -7,7 +7,7 @@ sudo dnf install -y python3-pyasynchat
 
 # Install
 sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
-sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+sudo dnf config-manager addrepo --from-repofile="https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo"
 sudo dnf install -y sublime-text sublime-merge
 
 # Configure
@@ -22,8 +22,10 @@ cat <<EOT >> ~/.config/mimeapps.list
 [Added Associations]
 text/plain=sublime_text.desktop;
 text/markdown=sublime_text.desktop;
+application/x-shellscript=sublime_text.desktop;
 
 [Default Applications]
 text/plain=sublime_text.desktop
 text/markdown=sublime_text.desktop
+application/x-shellscript=sublime_text.desktop;
 EOT

@@ -7,3 +7,6 @@ sudo dnf install -y \
     gstreamer1-vaapi
 
 vainfo
+
+# Intel GPU tools
+sudo dnf install -y igt-gpu-tools
