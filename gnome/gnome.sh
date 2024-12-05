@@ -15,7 +15,7 @@ dconf dump / > ~/"${date -I}_dconf_orig"
 # >3.28 theme
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'HighContrastInverse'
 gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
 
@@ -132,3 +132,6 @@ gsettings set org.gtk.gtk4.Settings.FileChooser sort-order 'ascending'
 
 # Calculator
 gsettings set org.gnome.calculator button-mode 'advanced'
+
+# Evince
+gsettings set org.gnome.Evince.Default show-sidebar false
