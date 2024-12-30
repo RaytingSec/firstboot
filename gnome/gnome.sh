@@ -91,6 +91,16 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$default_uuid/ palette "['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(207,176,39)', 'rgb(67,131,213)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']"  # User custom based on Tango
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 
+# Ptyxis
+# Replaces gnome-terminal in newer Fedora versions
+# dconf dump /org/gnome/Ptyxis/Profiles/${profile_id}/
+default_profile_id=$(gsettings get org.gnome.Ptyxis default-profile-uuid)
+default_profile_id="${default_profile_id//\'}"  # Remove quotes
+# It would be best to save the theme somewhere. Themes are loaded locally from:
+# Original theme can be found from:
+cp /tmp/init/linux-config/ptyxis/*.palette ~/.local/share/org.gnome.Ptyxis/palettes/
+dconf write /org/gnome/Ptyxis/Profiles/${default_profile_id}/palette 'Ibm 3270 (High Contrast) (Persistent)'
+
 # Nautilus
 # gsettings set org.gnome.nautilus.list-view default-zoom-level 'smaller'  # Invalid in >3.28
 gsettings set org.gnome.nautilus.list-view default-zoom-level 'small'
