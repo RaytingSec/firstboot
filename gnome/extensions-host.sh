@@ -45,8 +45,8 @@ dconf write ${ext_path}/${ext_name}/enable-fullscreen false
 ext_name="gtile"
 # show-icon=true  # Should be default
 # Set up 3 x 2 window layout
-dconf write ${ext_path}/${ext_name}/grid-sizes "'3x2,2x2'"
-# Split numberpad into 3 rows:
+dconf write ${ext_path}/${ext_name}/grid-sizes "'6x4,3x2,2x2'"
+# Split numberpad into 3 rows with each number as X in resize-2X:
 # 789
 # 456
 # 123
@@ -61,7 +61,7 @@ dconf write ${ext_path}/${ext_name}/preset-resize-26 "['<Control><Alt><Super>KP_
 dconf write ${ext_path}/${ext_name}/preset-resize-27 "['<Control><Alt><Super>KP_7']"
 dconf write ${ext_path}/${ext_name}/preset-resize-28 "['<Control><Alt><Super>KP_8']"
 dconf write ${ext_path}/${ext_name}/preset-resize-29 "['<Control><Alt><Super>KP_9']"
-# Alternatively can use numberpad in qwerty compatible format
+# Alternatively can use numberpad overlaid on right side of QWERTY keyboard
 dconf write ${ext_path}/${ext_name}/preset-resize-21 "['<Control><Alt><Super>m']"
 dconf write ${ext_path}/${ext_name}/preset-resize-22 "['<Control><Alt><Super>comma']"
 dconf write ${ext_path}/${ext_name}/preset-resize-23 "['<Control><Alt><Super>period']"
@@ -71,12 +71,23 @@ dconf write ${ext_path}/${ext_name}/preset-resize-26 "['<Control><Alt><Super>l']
 dconf write ${ext_path}/${ext_name}/preset-resize-27 "['<Control><Alt><Super>u']"
 dconf write ${ext_path}/${ext_name}/preset-resize-28 "['<Control><Alt><Super>i']"
 dconf write ${ext_path}/${ext_name}/preset-resize-29 "['<Control><Alt><Super>o']"
+# Resize coordinates come in X:Y X:Y format
+# 0, 0 coordinate is top left of display
+# X axis increases left -> right
+# Y axis increases top -> down
+# First coordinate is the top left tile to occupy
+# Second coordinate is the bottom right tile to occupy
+# Ex:
+# 6x4 5:3 6:4
+# Grid is 6 wide 4 tall
+# 5-6 of 6 from the left
+# 3-4 of 4 from the top
 dconf write ${ext_path}/${ext_name}/resize21 "'3x2 1:2 1:2'"
 dconf write ${ext_path}/${ext_name}/resize22 "'3x2 2:2 2:2'"
 dconf write ${ext_path}/${ext_name}/resize23 "'3x2 3:2 3:2'"
-dconf write ${ext_path}/${ext_name}/resize24 "'3x2 1:1 1:2, 1:1 2:2'"
+dconf write ${ext_path}/${ext_name}/resize24 "'6x4 1:1 2:6, 1:1 3:6, 1:1 4:6'"  # 1/3, half, 2/3
 dconf write ${ext_path}/${ext_name}/resize25 "'3x2 2:1 2:2'"
-dconf write ${ext_path}/${ext_name}/resize26 "'3x2 3:1 3:2, 2:1 3:2'"
+dconf write ${ext_path}/${ext_name}/resize26 "'6x4 5:1 6:4, 4:1 6:4, 3:1 6:4'"  # 1/3, half, 2/3
 dconf write ${ext_path}/${ext_name}/resize27 "'3x2 1:1 1:1'"
 dconf write ${ext_path}/${ext_name}/resize28 "'3x2 2:1 2:1'"
 dconf write ${ext_path}/${ext_name}/resize29 "'3x2 3:1 3:1'"
